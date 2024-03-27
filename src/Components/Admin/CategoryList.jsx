@@ -15,35 +15,35 @@ import AddIcon from "@mui/icons-material/Add";
 import CategoryCard from "./CategoryCard";
 import { v4 as uuidv4 } from "uuid";
 const CategoryList = ({ onClick }) => {
-  // const category = [
-  //   {
-  //     id: uuidv4(),
-  //     cat: "Ferrous",
-  //     subcategories: [
-  //       { subcat: "Steel", subCatPrice: 15.5 },
-  //       { subcat: "Iron", subCatPrice: 10.25 },
-  //       // Add more subcategories as needed
-  //     ],
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     cat: "Non-Ferrous",
-  //     subcategories: [
-  //       { subcat: "Aluminum", subCatPrice: 20.75 },
-  //       { subcat: "Copper", subCatPrice: 30.0 },
-  //     ],
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     cat: "E-Scrap",
-  //     subcategories: [
-  //       { subcat: "Circuit Boards", subCatPrice: 5.5 },
-  //       { subcat: "Hard Drives", subCatPrice: 8.75 },
-  //       // Add more subcategories as needed
-  //     ],
-  //   },
-  //   // Add more categories as needed
-  // ];
+  const category = [
+    {
+      id: uuidv4(),
+      cat: "Ferrous",
+      subcategories: [
+        { subcat: "Steel", subCatPrice: 15.5 },
+        { subcat: "Iron", subCatPrice: 10.25 },
+        // Add more subcategories as needed
+      ],
+    },
+    {
+      id: uuidv4(),
+      cat: "Non-Ferrous",
+      subcategories: [
+        { subcat: "Aluminum", subCatPrice: 20.75 },
+        { subcat: "Copper", subCatPrice: 30.0 },
+      ],
+    },
+    {
+      id: uuidv4(),
+      cat: "E-Scrap",
+      subcategories: [
+        { subcat: "Circuit Boards", subCatPrice: 5.5 },
+        { subcat: "Hard Drives", subCatPrice: 8.75 },
+        // Add more subcategories as needed
+      ],
+    },
+    // Add more categories as needed
+  ];
 
   const [categories, setCategories] = useState(category); //managing data from/to category object
   const [input, setInput] = useState(""); //managing user input of materials

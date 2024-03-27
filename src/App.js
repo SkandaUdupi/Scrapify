@@ -5,7 +5,8 @@ import Vendor from "./Components/Vendor/Vendor";
 import SignUp from "./Components/SingUp_In/SingUp";
 import { Route, Routes } from "react-router-dom";
 import SignIn from "./Components/SingUp_In/SingIn";
-import Bill from "./Components/Vendor/Bill/Bill";
+import Bill2 from "./Components/Vendor/Bill/Bill2";
+import Payment from "./Components/Vendor/Bill/Payment";
 function App() {
   return (
     // <Box sx={{ flexGrow: 1 }}>
@@ -22,8 +23,9 @@ function App() {
       <Route path="/admin" element={<Admin />} />
       <Route path="/vendor">
         <Route index element={<Vendor />} />
-        <Route path="bill" element={<Bill />} />
+        <Route path="bill" element={<Bill2 />} />
       </Route>
+      <Route path="/payment" element={<Payment />} />
     </Routes>
   );
 }

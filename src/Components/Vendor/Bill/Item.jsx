@@ -1,10 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import InputAdornment from "@mui/material/InputAdornment";
 import { Box } from "@mui/material";
 
-const Item = ({ amount }) => {
+const Item = ({ itemData }) => {
+  const itemRef = useRef(null); // Initialize the ref with null
+  const priceRef = useRef();
+  const qtyRef = useRef();
+
+  useEffect(() => {
+    if (itemRef.current && qtyRef.current && priceRef.current) {
+      itemData({
+        item: itemRef.current.value,
+        qty: qtyRef.current.value,
+        price: priceRef.current.value,
+      });
+    }
+  }, [itemRef.value, qtyRef, priceRef]);
+
   const categories = [
     {
       id: 1,
@@ -45,9 +59,8 @@ const Item = ({ amount }) => {
 
   const [selectedSubcat, setSelectedSubcat] = useState("");
   const [quantity, setQuantity] = useState(1);
-  const [previousTotal, setPreviousTotal] = useState(0);
 
-  const handleOnChange = (event, value) => {
+  const handleOnSubCatChange = (event, value) => {
     setSelectedSubcat(value);
   };
 
@@ -56,11 +69,7 @@ const Item = ({ amount }) => {
     const selectedSubcategory = categories
       .flatMap((category) => category.subcategories)
       .find((subcat) => subcat.subcat === selectedSubcat);
-    const addedPrice = selectedSubcategory
-      ? selectedSubcategory.subCatPrice * newQuantity
-      : 0;
-    amount(addedPrice - previousTotal);
-    setPreviousTotal(addedPrice);
+
     setQuantity(newQuantity);
   };
 
@@ -87,6 +96,7 @@ const Item = ({ amount }) => {
         label="Quantity"
         type="number"
         value={quantity}
+        ref={qtyRef}
         onChange={handleQuantityChange}
         InputProps={{
           endAdornment: <InputAdornment position="end">pcs</InputAdornment>,
@@ -96,6 +106,7 @@ const Item = ({ amount }) => {
         sx={{ width: { md: "10vw", xs: "25vw" }, fontWeight: "bold" }}
         label="Total Price"
         value={price}
+        ref={priceRef}
         disabled
         InputProps={{
           startAdornment: (
@@ -118,12 +129,12 @@ const Item = ({ amount }) => {
         id="free-solo"
         freeSolo
         options={options}
-        onChange={handleOnChange}
+        ref={itemRef}
+        onChange={handleOnSubCatChange}
         renderInput={(params) => <TextField {...params} label="Item" />}
       />
       {selectedSubcat && quantityPrice}
     </Box>
   );
 };
-
 export default Item;

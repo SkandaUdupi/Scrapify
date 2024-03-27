@@ -9,7 +9,6 @@ const PickupReq = ({ pickupId }) => {
 
   return (
     <Box>
-      <h1>Pickup Request</h1>
       <SearchBar setSearchQuery={searchQuery} />
     </Box>
   );

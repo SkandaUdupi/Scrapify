@@ -54,6 +54,7 @@ const Modal = ({ open, onClose, pickupID }) => {
           left: isMobile ? "50%" : modalStyles.left,
           transform: isMobile ? "translate(-50%, -50%)" : modalStyles.transform,
           maxWidth: 250,
+          width: { xs: "50vw" },
         }}
       >
         <Typography sx={{ fontWeight: "bold" }}>

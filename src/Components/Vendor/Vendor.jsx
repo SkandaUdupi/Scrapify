@@ -7,11 +7,18 @@ const Vendor = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Navbar />
-      <Grid container>
-        <Grid item xs={4}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+
+          height: "100vh", // Set the height to 100% of the viewport height for vertical centering
+        }}
+      >
+        <Box sx={{ width: "40%" }}>
           <Content />
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </Box>
   );
 };
