@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@mui/material";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Table,
   TableBody,
@@ -15,6 +15,7 @@ import axios from "axios";
 
 function Payment() {
   const location = useLocation();
+
   const { billItems } = location.state;
   //   console.log(billItems)
   const totalPrice = billItems.reduce((total, item) => total + item.tprice, 0);
@@ -97,6 +98,7 @@ function Payment() {
     });
 
     console.log(response.data);
+
     // const responseData = await response.json();
     // console.log(responseData);
     // const paymentId = responseData.paymentId;
