@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import SignIn from "./Components/SingUp_In/SingIn";
 import Bill2 from "./Components/Vendor/Bill/Bill2";
 import Payment from "./Components/Vendor/Bill/Payment";
+import Dashboard from "./Components/Admin/PaymentDashboard/Dashboard";
 function App() {
   return (
     // <Box sx={{ flexGrow: 1 }}>
@@ -18,9 +19,10 @@ function App() {
     //   </Grid>
     // </Box>
     <Routes>
-      <Route path="/signin" element={<SignIn />} />
+      <Route path="/" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/admin" element={<Admin />} />
+      <Route path="/admin/dashboard" element={<Dashboard />} />
       <Route path="/vendor">
         <Route index element={<Vendor />} />
         <Route path="bill" element={<Bill2 />} />

@@ -22,7 +22,7 @@ const Display = ({ id, subcat }) => {
 
   const onSavePrice = (index) => {
     // Here, you can handle saving the edited price
-    console.log("Edited Price:", editedPrice);
+    console.log(subcat[index].subcat, editedPrice); //subcat,price
     // Reset edited price and index after saving
 
     //save to DB
