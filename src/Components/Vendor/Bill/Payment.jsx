@@ -42,7 +42,7 @@ function Payment() {
       //update the actual details that are fetched (to=email),upiid,name,oredrid
       amount: amount,
       from: "onboarding@resend.dev",
-      to: "rohanacharv@gmail.com",
+      to: "skanda.udupi02@gmail.com",
       subject: "Scrapify Invoice",
       customerupi:"7829926870@paytm",
       customername:"RohanAchar",
