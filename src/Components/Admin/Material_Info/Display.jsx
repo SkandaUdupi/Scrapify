@@ -26,8 +26,8 @@ const Display = ({ id, subcat }) => {
     // Reset edited price and index after saving
 
     //save to DB
-    setEditedPrice(null);
-    setEditedIndex(null);
+    // setEditedPrice(null);
+    // setEditedIndex(null);
   };
 
   return (

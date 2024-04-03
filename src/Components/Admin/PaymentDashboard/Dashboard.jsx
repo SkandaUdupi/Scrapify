@@ -7,10 +7,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import axios from "axios";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
+import Navbar from "../Navbar";
+import { Typography } from "@mui/material";
 
 const StyledTableContainer = styled(TableContainer)`
   max-width: 100%;
+  margin: 0 auto;
 `;
 
 const StyledTable = styled(Table)`
@@ -18,53 +22,80 @@ const StyledTable = styled(Table)`
 `;
 
 const Dashboard = () => {
-  const [details, setdetails] = useState([]);
+  const [details, setDetails] = useState([]);
 
-  const fetchdet = async () => {
-    const response = await fetch("http://localhost:8080/getdetails");
-    const data = await response.json()
-    setdetails(data.items)
-    // console.log(data.items)
+  const fetchData = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/getdetails");
+      if (!response.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = await response.json();
+      setDetails(
+        data.items.map((item) => ({
+          ...item,
+          formattedDateTime: new Date(item.created_at * 1000).toLocaleString(
+            "en-US",
+            {
+              hour: "numeric",
+              minute: "numeric",
+              month: "short",
+              day: "numeric",
+              hour12: true,
+            }
+          ),
+        }))
+      );
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
   };
 
-  // fetchdet();
   useEffect(() => {
-    if(details.length==0){
-      fetchdet();
-    console.log(details);
-    }
-  }, [details]);
+    const interval = setInterval(fetchData, 5000); // Fetch data every 5 seconds
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, []);
 
   return (
-    <StyledTableContainer
-      component={Paper}
-      sx={{ width: { md: "80%", xs: "100%" } }}
-    >
-      <StyledTable aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell style={{ minWidth: "150px" }}>Created at</TableCell>
-            <TableCell style={{ minWidth: "150px" }}>Payment ID</TableCell>
-            <TableCell style={{ minWidth: "150px" }}>Contact</TableCell>
-
-            <TableCell style={{ minWidth: "150px" }}>Amount</TableCell>
-            <TableCell style={{ minWidth: "150px" }}>Status</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {/* Insert your table rows here */}
-          <TableRow>
-            <TableCell>2024-03-31</TableCell>
-            <TableCell>1233</TableCell>
-            <TableCell>John</TableCell>
-
-            <TableCell>$100.00</TableCell>
-            <TableCell>Pending</TableCell>
-          </TableRow>
-          {/* Add more rows as needed */}
-        </TableBody>
-      </StyledTable>
-    </StyledTableContainer>
+    <>
+      <Navbar title={"Main"} />
+      <Typography align="center" variant="h3" sx={{margin:"30px"}}>
+        Payment Dashboard
+      </Typography>
+      {details === undefined || details.length === 0 ? (
+        <Box sx={{ width: "100%" }}>
+          <LinearProgress />
+        </Box>
+      ) : (
+        <StyledTableContainer
+          component={Paper}
+          sx={{
+            width: { md: "80%", xs: "100%" },
+          }}
+        >
+          <StyledTable aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell style={{ minWidth: "150px" }}>Created at</TableCell>
+                <TableCell style={{ minWidth: "150px" }}>Payment ID</TableCell>
+                <TableCell style={{ minWidth: "150px" }}>Amount</TableCell>
+                <TableCell style={{ minWidth: "150px" }}>Status</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {details.map((item) => (
+                <TableRow key={item.id}>
+                  <TableCell>{item.formattedDateTime}</TableCell>
+                  <TableCell>{item.id}</TableCell>
+                  <TableCell>{item.amount / 100}</TableCell>
+                  <TableCell>{item.status}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </StyledTable>
+        </StyledTableContainer>
+      )}
+    </>
   );
 };
 
