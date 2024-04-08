@@ -34,6 +34,9 @@ const AddScrap = ({ id }) => {
   const onAddSubCat = () => {
     //  Add to DataBase
     //inputName and inputPrice has data enterd by user
+
+    setInputName("");
+    setInputPrice("");
   };
 
   return (
@@ -96,6 +99,7 @@ const AddScrap = ({ id }) => {
             <Input
               sx={{ fontSize: isSmallScreen ? "14px" : "16px" }}
               onChange={onNameInput}
+              value={inputName}
             />
           </FormControl>
           <FormControl>
@@ -103,6 +107,7 @@ const AddScrap = ({ id }) => {
             <Input
               sx={{ fontSize: isSmallScreen ? "14px" : "16px" }}
               onChange={onPriceInput}
+              value={inputPrice}
             />
           </FormControl>
           <CardActions>
