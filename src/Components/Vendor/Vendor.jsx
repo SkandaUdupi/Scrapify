@@ -6,7 +6,7 @@ import Navbar from "./Navbar";
 const Vendor = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Navbar />
+      <Navbar title={"MyPickups"}/>
       <Box
         sx={{
           display: "flex",
