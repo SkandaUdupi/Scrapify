@@ -7,10 +7,11 @@ import { Route, Routes } from "react-router-dom";
 import SignIn from "./Components/SingUp_In/SingIn";
 import Bill2 from "./Components/Vendor/Bill/Bill2";
 import Payment from "./Components/Vendor/Bill/Payment";
+//following has to be added
 import Dashboard from "./Components/Admin/PaymentDashboard/Dashboard";
 import VendorTable from "./Components/Admin/Vendor_Info/VendorTable";
 import VendorInfo from "./Components/Admin/Vendor_Info/VendorInfo";
-import PrevPickup from "./Components/Vendor/PrevPickup/PrevPickup"
+import PrevPickup from "./Components/Vendor/PrevPickup/PrevPickup";
 function App() {
   return (
     // <Box sx={{ flexGrow: 1 }}>
@@ -27,10 +28,7 @@ function App() {
       <Route path="/admin" element={<Admin />} />
       <Route path="/admin/dashboard" element={<Dashboard />} />
       <Route path="/admin/vendor_info" element={<VendorTable />} />
-      <Route path="/admin/vendor_info/:id" element={<VendorInfo/>} />
-
-
-
+      <Route path="/admin/vendor_info/:id" element={<VendorInfo />} />
 
       <Route path="/vendor">
         <Route index element={<Vendor />} />

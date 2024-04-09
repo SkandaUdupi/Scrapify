@@ -58,8 +58,16 @@ const Dashboard = () => {
 
   return (
     <>
-      <Navbar title={"Main"} />
-      <Typography align="center" variant="h3" sx={{margin:"30px"}}>
+      <Navbar nav1={"Home"} nav2={"vendors"} />
+      <Typography
+        align="center"
+        variant="h3"
+        sx={{
+          margin: "30px",
+          fontSize: { md: "28px", xs: "18px" },
+          fontWeight: "bold",
+        }}
+      >
         Payment Dashboard
       </Typography>
       {details === undefined || details.length === 0 ? (

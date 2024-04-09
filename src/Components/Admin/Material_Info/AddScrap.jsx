@@ -19,7 +19,7 @@ const AddScrap = ({ id }) => {
   const isSmallScreen = useMediaQuery("(max-width:600px)");
   const [expanded, setExpanded] = useState(false); //to manage the dropdown of add scrap
   const [inputName, setInputName] = useState("");
-  const [inputPrice, setInputPrice] = useState(0);
+  const [inputPrice, setInputPrice] = useState(null);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -87,31 +87,42 @@ const AddScrap = ({ id }) => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent
           sx={{
-            marginTop: "10px",
-            display: "grid",
-            gridTemplateColumns: "repeat(2, minmax(40px, 1fr))",
-            gap: 1.5,
-            width: "200px", //Change the width of the form box
+            width: { md: "100px", xs: "140px" }, //Change the width of the form box
+            marginLeft: { xs: "10px", md: "30px" },
           }}
         >
           <FormControl>
-            <FormLabel>Name</FormLabel>
+            <FormLabel sx={{ fontSize: isSmallScreen ? "14px" : "16px" }}>
+              Name
+            </FormLabel>
             <Input
-              sx={{ fontSize: isSmallScreen ? "14px" : "16px" }}
+              sx={{ fontSize: isSmallScreen ? "14px" : "16px", width: "10rem" }}
               onChange={onNameInput}
               value={inputName}
             />
           </FormControl>
           <FormControl>
-            <FormLabel>Price</FormLabel>
+            <FormLabel
+              sx={{
+                fontSize: isSmallScreen ? "14px" : "16px",
+                marginTop: "18px",
+              }}
+            >
+              Price
+            </FormLabel>
             <Input
-              sx={{ fontSize: isSmallScreen ? "14px" : "16px" }}
+              sx={{ fontSize: isSmallScreen ? "14px" : "16px", width: "10rem" }}
               onChange={onPriceInput}
               value={inputPrice}
             />
           </FormControl>
           <CardActions>
-            <Button variant="solid" color="primary" onClick={onAddSubCat}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={onAddSubCat}
+              sx={{ marginTop: "1.2rem" }}
+            >
               Save
             </Button>
           </CardActions>

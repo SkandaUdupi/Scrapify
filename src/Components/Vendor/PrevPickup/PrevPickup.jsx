@@ -76,7 +76,7 @@ function PrevPickup() {
                     fontWeight={"bolder"}
                     fontSize={"20px"}
                   >
-                   Payment: &#8377;&nbsp;{pick.totalPrice}
+                   Amount: &#8377;&nbsp;{pick.totalPrice}
                   </Typography>
                   <Divider sx={{ margin: "2vh 0" }} />
 
@@ -126,7 +126,7 @@ function PrevPickup() {
               <Typography width={"60vw"}>
                 No Previous Pickups
               </Typography>
-              <Button
+              {/* <Button
                 sx={{
                   textTransform: "none",
                   color: "white",
@@ -137,7 +137,7 @@ function PrevPickup() {
                 }}
               >
                 Raise pickup request
-              </Button>
+              </Button> */}
             </Box>
           </>
         )}

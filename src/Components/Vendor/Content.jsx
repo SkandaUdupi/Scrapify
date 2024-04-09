@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React, { useState } from "react";
 import PickupReq from "./PickupReq";
 import PickupBox from "./PickUp Box/PickupBox";
@@ -22,29 +22,20 @@ const Main = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-
           width: { md: "70vw" },
         }}
       >
-        <Typography variant="h4" sx={{ marginBottom: "50px" }}>
+        <Typography variant="h4" sx={{ margin: "50px 0 " }}>
           Pickup Request
         </Typography>
 
-        <PickupReq
-          pickupId={(id) => {
-            setPickupID(id); // Set pickupID, Id  the vendor hay typed in search bar
-          }}
-        />
-
-        <Grid container spacing={2} sx={{ width: "100%" }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
           {[122, 223, 73, 44, 115, 336, 117].map((item) => (
-            <Grid key={item} item xs={12} md={6}>
-              <Box sx={{ marginBottom: 2 }}>
-                <PickupBox pickupId={item} setIsOpen={onClickModal} />
-              </Box>
-            </Grid>
+            <Box key={item} width={{ xs: "100%", md: "calc(50% - 8px)" }}>
+              <PickupBox pickupId={item} setIsOpen={onClickModal} />
+            </Box>
           ))}
-        </Grid>
+        </Box>
       </Box>
 
       <Modal
